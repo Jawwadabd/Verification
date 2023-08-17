@@ -1,0 +1,2 @@
+taskset -c 0 ./server 8080
+taskset -c 1,2,3 ./load gen.out localhost 8080 5000 0.1 60
