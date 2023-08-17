@@ -1,0 +1,4 @@
+Objective: To verify properties like mutual exclusion and starvation using Lamport’s algorithm.
+◦ Implemented Lamport’s algorithm in NuSMV for 2 programs.
+◦ Utilized assert conditions to verify the guarantee of properties like mutual exclusion and starvation through
+Lamport’s algorithm
