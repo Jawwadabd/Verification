@@ -1,0 +1,4 @@
+ The Alpha-Beta CROWN is the state-of-the-art tool used to verify the robustness of neural networks.
+ The tool is proved to have outperformed all the currently available tools in various competitions held for neural network verification.
+ It uses complex mathematical ideas and optimizations to achieve this performance
+ The chain of research paper that describes the tool covers the almost the ideas in the field of verification of AI.
