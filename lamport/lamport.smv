@@ -1,0 +1,43 @@
+MODULE main
+	VAR
+		timestamp : 1..51;
+		req_ts : array 0..1 of -1..51;
+		reply_queue : array 0..1 of 0..1;
+		release_queue : array 0..1 of 0..1;
+		proc0 : process lamport(0,timestamp,req_ts,reply_queue,release_queue);
+		proc1 : process lamport(1,timestamp,req_ts,reply_queue,release_queue);
+	ASSIGN
+        init(timestamp) := 1;
+        init(req_ts[0]) := -1;
+        init(req_ts[1]) := -1;
+        init(reply_queue[0]) := 0;
+        init(reply_queue[1]) := 0;
+        init(release_queue[0]) := 1;
+        init(release_queue[1]) := 1;
+    SPEC AG ! (proc0.state = critical & proc1.state = critical)
+	SPEC AG (proc1.state = request -> AF proc0.state = critical)
+
+MODULE lamport(id,timestamp,req_ts,reply_queue,release_queue)
+	VAR
+	state : {request,reply,critical,release};
+	 DEFINE
+  	 other :=(id = 0) ?  1 : 0; 
+	ASSIGN 
+		init(state) := release;
+		next(req_ts[id]) :=case
+			state=release & timestamp<50 : timestamp;
+			TRUE : req_ts[id];
+			esac;
+		next(timestamp):= case
+			state=release & timestamp<50 : timestamp+1;
+			TRUE : timestamp;
+			esac;
+		next(state) := case
+			state=release & (req_ts[other]=-1 | req_ts[other]>req_ts[id]) : request;
+			state=release & (req_ts[other]<req_ts[id]) & reply_queue[id]=1 : reply;
+			state=request & (reply_queue[other]=1 )  & release_queue[id]=0: critical;
+			state=reply & (release_queue[other]=1 | req_ts[other]>req_ts[id])  & reply_queue[id]=0 : request;
+			state=critical & release_queue[id]=0 : critical;
+			state=critical & release_queue[id]=1 : release;
+			TRUE : state;
+			esac;
