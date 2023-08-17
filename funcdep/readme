@@ -1,0 +1,5 @@
+Functional dependency in PostgreSQL
+(CS631: Database Systems, Autumn 2022)
+◦ Implemented functional dependency check during data insertion in PostgreSQL.
+◦ Created and defined functional dependencies using a dedicated table.
+◦ Ensured adherence to defined dependencies, preventing violations during insertion
