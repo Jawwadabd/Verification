@@ -1,0 +1,6 @@
+Phishing Website Detection
+(CS 725: Foundation of Machine Learning, Autumn 2022)
+◦ Developed a website classification model, utilizing various machine learning techniques.
+◦ Implemented machine learning models: Multilayered Perceptron, Decision trees, Random Forest, and Support
+Vector Machine
+◦ Conducted feature selection, compared techniques, achieving a 0.984 accuracy with Random Forest.
