@@ -1,0 +1,5 @@
+Basic Shell in C
+(CS744: Design and Engineering of Computing Systems, Autumn 2022)
+◦ Created a C-based prototype shell supporting fundamental Linux commands.
+◦ Implemented key features including foreground/background execution and signal handling.
+◦ Developed practical understanding of shell scripting and command-line interface.
